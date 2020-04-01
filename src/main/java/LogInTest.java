@@ -15,7 +15,7 @@ public class LogInTest extends TestBase{
         // Открыл страницу авторизации
         driver.get ("http://cw07529-wordpress.tw1.ru/my-account/");
 
-        // Открыл страницу авторизации и проверил что это именно она.
+        // Открыл страницу авторизации и проверил что это именно она, а не страница с уже залогиненым пользователем.
         WebDriverWait wait = new WebDriverWait(driver,20);
         wait.until(ExpectedConditions.visibilityOfElementLocated
                 (By.xpath("//div[contains(@class,\"post-47 page type-page status-publish hentry\")]//h1[text() = \"My account\"]")));
