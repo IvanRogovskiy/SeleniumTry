@@ -15,12 +15,16 @@ public class LogInTest extends TestBase{
         // Открыл страницу авторизации
         driver.get ("http://cw07529-wordpress.tw1.ru/my-account/");
 
-        // Проверил, что это действительно она
-        String title = driver.getTitle();
-        Assert.assertEquals(title,"My account — T-Time");
+        // Открыл страницу авторизации и проверил что это именно она.
+        WebDriverWait wait = new WebDriverWait(driver,20);
+        wait.until(ExpectedConditions.visibilityOfElementLocated
+                (By.xpath("//div[contains(@class,\"post-47 page type-page status-publish hentry\")]//h1[text() = \"My account\"]")));
+        WebElement Check = driver.findElement(By.xpath
+                ("//div[contains(@class,\"single-entry-summary\")]//h2"));
+        String CheckPAge = Check.getText();
+        Assert.assertEquals(CheckPAge,"Авторизация");
 
         // Жду загрузки полей ввода логина и пароля
-        WebDriverWait wait = new WebDriverWait(driver,20);
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("username")));
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("password")));
 

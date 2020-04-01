@@ -16,24 +16,24 @@ public class StuffPriceTest extends TestBase {
 
     public void simpleTest()
     {
-        // Открыл страницу.
 
+        // Открыл страницу.
         driver.get("http://cw07529-wordpress.tw1.ru/");
 
-        // Получил заголовок страницы в переменную title.
+        // Ожидание загрузки страницы со строкой поиска
+        WebDriverWait wait = new WebDriverWait(driver, 20);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("header-search-input")));
 
+        // Получил заголовок страницы в переменную title.
         String title = driver.getTitle();
 
         // Сравнил заголовок с требуемым, данным убедившись, что нужная страница открыта.
-
         Assert.assertEquals("T-Time — Test University T-Systems", title);
 
         /* Нашел элемент " строка поиска", в консоле разработки командой "document.querySelectorAll(class="nav-link")"
         убедился, что такой элемент один на странице, добавил ожидание его видимости на странице
         и ввел в него "Oldies". */
 
-        WebDriverWait wait = new WebDriverWait(driver, 20);
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("header-search-input")));
         driver.findElement(By.className("header-search-input")).sendKeys("Oldies");
 
         //Нашел кнопку поиска и кликнул по ней.
