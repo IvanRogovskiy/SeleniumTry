@@ -1,1 +1,1 @@
-# SeleniumTry
+# AutoTesting
